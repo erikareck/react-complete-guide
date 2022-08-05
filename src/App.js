@@ -33,6 +33,7 @@ const DUMMY_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [filteredExpenses, setFilterExpenses] = useState(expenses);
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
@@ -40,12 +41,20 @@ const App = () => {
     });
   };
 
+  const filterExpenseHandler = (selectedYear) => {
+    //const result = words.filter(word => word.length > 6);
+    const filteredExpenses = expenses.filter(item => item.date.getFullYear() == selectedYear);
+    console.log(selectedYear);
+    console.log(filteredExpenses);
+    setFilterExpenses(filteredExpenses);
+  };
+
   console.log('App.js');
   //console.trace();
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler}/>
-      <Expenses items={expenses}/>
+      <Expenses items={filteredExpenses} onFilterExpense={filterExpenseHandler}/>
     </div>
   );
   
