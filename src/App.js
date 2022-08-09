@@ -39,14 +39,16 @@ const App = () => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
+    console.log(expenses);
   };
 
   console.log('App.js');
+  console.log(expenses);
   //console.trace();
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler}/>
-      <Expenses items={filteredExpenses}/>
+      <Expenses items={expenses}/>
     </div>
   );
   
